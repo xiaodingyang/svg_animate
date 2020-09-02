@@ -4,17 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link
-      href="https://unpkg.com/animate.css@3.5.2/animate.min.css"
-      rel="stylesheet"
-    />
     <style>
       * {
         margin: 0;
         padding: 0;
       }
       .path {
-        /* animation: lineMove 210s ease-out; */
+        animation: lineMove 210s ease-out;
       }
       @keyframes lineMove {
         0% {
@@ -28,20 +24,15 @@
           opacity: 1;
         }
       }
-      .container {
+      body {
         position: relative;
-
-        /* overflow: hidden; */
       }
 
       .click {
         cursor: pointer;
       }
 
-      .body {
-        position: relative;
-      }
-      .container img {
+      .container .img img {
         position: absolute;
         left: 0;
         top: 0;
@@ -50,33 +41,32 @@
       }
 
       .bottom-bg {
-        /* position: absolute;
-        left: 0;
-        top: 0; */
         width: 100%;
-        height: 10683px;
-        /* z-index: -999; */
         background: url('./assets/img/b.png') no-repeat center/cover;
       }
       .svg {
         position: absolute;
+        width: 100%;
         z-index: 999;
         left: 0;
         bottom: 0;
       }
-      /* .button {
+      .button {
         position: absolute;
+        left: 0;
+        width: 100%;
         z-index: 999;
-      } */
+        padding: 30px 0;
+      }
       .an-img {
-        /* opacity: 0; */
+        opacity: 0;
         transition: 1s;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="bottom-bg"></div>
+      <img src="./assets/img/b.png" alt="" width="100%" />
       <div class="img">
         <img src="./assets/img/index.png" alt="" width="100%" />
         <img src="./assets/img/1.png" alt="" width="100%" class="an-img" />
@@ -86,14 +76,9 @@
         <img src="./assets/img/5.png" alt="" width="100%" class="an-img" />
         <img src="./assets/img/6.png" alt="" width="100%" class="an-img" />
         <img src="./assets/img/7.png" alt="" width="100%" class="an-img" />
-        <img
-          src="./assets/img/8.png"
-          alt=""
-          width="100%"
-          class="click an-img"
-        />
+        <img src="./assets/img/8.png" alt="" width="100%" class="an-img" />
       </div>
-      <!-- <div class="button">按钮</div> -->
+      <div class="button"></div>
       <svg
         class="svg"
         xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +94,7 @@
         <style type="text/css">
           #path {
             fill: none;
-            stroke: red;
+            stroke: #fff;
             stroke-width: 0.5;
           }
         </style>
@@ -122,30 +107,22 @@
     </div>
   </body>
   <script>
-    var obj = document.querySelector('path');
-    var length = obj.getTotalLength();
-    const click = document.querySelector('.click');
-    const bg = document.querySelector('.bottom-bg');
-    const path = document.querySelector('#path');
-    const svg = document.querySelector('.svg');
-    const button = document.querySelector('.button');
-    const imgs = document.querySelectorAll('.an-img');
-    // if (svg.getBBox().height) {
-    //   button.style.bottom = svg.getBoundingClientRect().height + 'px';
-    // }
-    console.log('click.offsetHeight', click.offsetHeight);
-    if (click.offsetHeight) {
-      bg.style.height = click.offsetHeight + 'px';
-    }
-    // path.style.webkitAnimationPlayState = 'paused';
-    click.onclick = () => {
-      path.style.webkitAnimationPlayState = 'running';
-      console.log('an00', imgs);
-      for (let i = 0; i < imgs.length; i++) {
-        setTimeout(() => {
-          imgs[i].style.opacity = 1;
-        }, 3 * 1000 * i);
-      }
-    };
+    window.onload = (function () {
+      const bg = document.querySelector('.bottom-bg');
+      const path = document.querySelector('#path');
+      const svg = document.querySelector('.svg');
+      const button = document.querySelector('.button');
+      const imgs = document.querySelectorAll('.an-img');
+      button.style.bottom = svg.getBoundingClientRect().height + 'px';
+      path.style.webkitAnimationPlayState = 'paused';
+      button.onclick = () => {
+        path.style.webkitAnimationPlayState = 'running';
+        for (let i = 0; i < imgs.length; i++) {
+          setTimeout(() => {
+            imgs[i].style.opacity = 1;
+          }, 3 * 1000 * i);
+        }
+      };
+    })();
   </script>
 </html>
