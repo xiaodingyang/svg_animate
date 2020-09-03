@@ -10,7 +10,7 @@
         padding: 0;
       }
       .path {
-        animation: lineMove 210s ease-out;
+        animation: lineMove 230s ease-out; /*整根线走完的时间*/
       }
       @keyframes lineMove {
         0% {
@@ -60,7 +60,7 @@
       }
       .an-img {
         opacity: 0;
-        transition: 15s;
+        transition: 18s; /*每张图片淡入的时间*/
       }
     </style>
   </head>
@@ -120,7 +120,7 @@
         for (let i = 0; i < imgs.length; i++) {
           setTimeout(() => {
             imgs[i].style.opacity = 1;
-          }, 12 * 1000 * i);
+          }, 10 * 1000 * i); // 10 是每间隔10s显示下一张图片
         }
       };
     })();
